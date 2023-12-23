@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Math Questions using chat</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <img src="./Logo.png" alt="Logo" height=180%>
+      <h1>Math Questions</h1>
+    </header>
+    <div class="question-section">
+      <label for="operation">Select an operation:</label>
+      <select id="operation">
+        <option value="addition">Addition (+)</option>
+        <option value="subtraction">Subtraction (-)</option>
+        <option value="multiplication">Multiplication (*)</option>
+        <option value="division">Division (/)</option>
+      </select>
+      <label for="difficulty">Select difficulty:</label>
+      <select id="difficulty">
+        <option value="1">1 Digit</option>
+        <option value="2">2 Digits</option>
+        <option value="3">3 Digits</option>
+        <option value="4">4 Digits</option>
+        <option value="5">5 Digits</option>
+      </select>
+      <div id="question"></div>
+      <input type="number" id="userAnswer" placeholder="Your Answer">
+      <button onclick="checkAnswer()">Submit</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

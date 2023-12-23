@@ -1,0 +1,145 @@
+/*
+Certainly! To ensure responsiveness and scalability on different devices, using relative units like percentages and "em" or "rem" for font sizes and other dimensions is recommended. Here's the updated CSS using relative units:
+
+```css*/
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 5% auto;
+  background-color: #fff;
+  padding: 2%;
+  border-radius: 2%;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+header img {
+  max-width: 15%;
+  margin-bottom: 1%;
+}
+
+header h1 {
+  font-size: 2em;
+  margin-bottom: 2%;
+}
+
+label {
+  display: block;
+  margin-bottom: 2%;
+}
+
+select,
+input[type="number"],
+button {
+  width: 90%;
+  padding: 2%;
+  margin-bottom: 2%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#question {
+  font-size: 1.5em;
+  margin-bottom: 2%;
+}
+
+#result {
+  margin-top: 4%;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 60%;
+  }
+
+  select,
+  input[type="number"],
+  button {
+    width: auto;
+  }
+}
+
+/*
+In this updated CSS code:
+
+- Percentages are used for margins, widths, and padding to make the layout responsive based on the screen size.
+- "em" and "rem" units are used for font sizes to maintain scalability relative to the parent or root font size.
+- The layout will adjust itself according to the screen width, enhancing the responsiveness of the math questions page.
+
+
+
+/*
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+header img {
+  max-width: 80p;
+  margin-bottom: 10px;
+}
+
+header h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+select, input[type="number"] {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#question {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+}
+/*
+
+This CSS styles the math questions page in a cleaner and more compact way. It includes a header section with a logo and a title, and it styles the dropdowns, inputs, buttons, and question/result sections to improve readability and visual appeal. 
+
+Please replace `"path_to_your_logo.png"` in the HTML with the actual path to your logo image. This will insert your logo into the webpage. Adjust the image size by modifying the `max-width` property in the CSS for the `header img` rule to fit your desired dimensions.
