@@ -1,4 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <title>Math Questions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 5% auto;
+      background-color: #fff;
+      padding: 2%;
+      border-radius: 2%;
+      box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-items: center;
+    }
+
+    header img {
+      max-width: 15%;
+      margin-bottom: 1%;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 2%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 2%;
+    }
+
+    select,
+    input[type="number"],
+    button {
+      width: 90%;
+      padding: 2%;
+      margin-bottom: 2%;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #question {
+      font-size: 1.5em;
+      margin-bottom: 2%;
+    }
+
+    #result {
+      margin-top: 4%;
+      font-weight: bold;
+    }
+
+    @media only screen and (min-width: 768px) {
+      .container {
+        width: 60%;
+      }
+
+      select,
+      input[type="number"],
+      button {
+        width: auto;
+      }
+    }
+
+    #previousAnswers {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #previousAnswers h2 {
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+
+    #previousAnswers p {
+      margin: 5px 0;
+    }
+
+    /* Additional styles for previous answers toggle */
+    #toggleButton {
+      margin-bottom: 10px;
+      padding: 8px 15px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #previousAnswers {
+      display: none;
+      flex-direction: column-reverse;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #previousAnswers h2 {
+      order: 1;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+
+    #previousAnswers div {
+      margin: 5px 0;
+    }
+
+    #clearButton {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Your existing CSS styles here */
+    /* Additional styles for progress bar */
+    .progress-container {
+      margin-top: 20px;
+      width: 80%;
+      height: 30px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background-color: #3498db;
+      transition: width 0.5s ease-in-out;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <img src="Logo.png" alt="Logo">
+      <h1>Math Questions</h1>
+    </header>
+    <div class="question-section">
+      <label for="operation">Select an operation:</label>
+      <select id="operation">
+        <option value="addition">Addition (+)</option>
+        <option value="subtraction">Subtraction (-)</option>
+        <option value="multiplication">Multiplication (*)</option>
+        <option value="division">Division (/)</option>
+      </select>
+      <label for="difficulty">Select difficulty:</label>
+      <select id="difficulty">
+        <option value="1">1 Digit</option>
+        <option value="2">2 Digits</option>
+        <option value="3">3 Digits</option>
+        <option value="4">4 Digits</option>
+        <option value="5">5 Digits</option>
+      </select>
+      <div id="question"></div>
+      <input type="number" id="userAnswer" placeholder="Your Answer">
+      <button onclick="checkAnswer()">Submit</button>
+      <div id="result"></div>
+      <div id="timeTaken"></div>
+      <button id="toggleButton" onclick="togglePreviousAnswers()">Toggle Previous Answers</button>
+      <div id="previousAnswers">
+        <h2>Previous Answers:</h2>
+      </div>
+
+      <button id="clearButton" onclick="clearPreviousAnswers()">Clear Previous Answers</button>
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar" id="successProgressBar" style="width: 0;"></div>
+      <p>Success Rate (Last 25 Answers)</p>
+    </div>
+
+
+  </div>
+
+  <script>
     let startTime, endTime;
 
     function generateQuestion(operation, difficulty) {
@@ -84,6 +287,7 @@
           color = answer.userAnswer == answer.correctAnswer ? 'green' : 'red';
           previousAnswersDiv.innerHTML += `<div><p>Question#${index + 1}: ${answer.question}</p> <p>Correct answer : ${answer.correctAnswer},</p><p> Time taken : ${answer.timeTaken} seconds</p><p style="color:${color}">your answer = ${answer.userAnswer}</p></div>`;
         });
+
       }
     }
 
@@ -122,10 +326,15 @@
       // Clear previous answers after every 25 answers
       const previousAnswers = JSON.parse(localStorage.getItem('previousAnswers')) || [];
       if (previousAnswers.length % 15 === 0) {
-        successRate > 0 ? alert(`Congratulation,your success rate is ${successRate.toFixed(2)}, over last 15 question,all previousAnswers will be cleared`) : console.warn('no previous answers');
+        successRate > 0 ? alert(`Congratulation,your success rate is ${successRate.toFixed(2)}, over last 15 question,  \nall previousAnswers will be cleared`) : console.warn('no previous answers');
 
         clearPreviousAnswers()
 
 
       }
     }
+  </script>
+
+</body>
+
+</html>
