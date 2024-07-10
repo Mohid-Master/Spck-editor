@@ -32,7 +32,7 @@
       </select>
       <div id="question"></div>
       <input type="number" id="userAnswer" placeholder="Your Answer">
-      <button onclick="checkAnswer()">Submit</button>
+      <button onclick="checkAnswer()" class="submitButton" >Submit</button>
       <div id="result"></div>
       <div id="timeTaken"></div>
       <button id="toggleButton" onclick="togglePreviousAnswers()">Toggle Previous Answers</button>
@@ -50,7 +50,12 @@
 
   </div>
 
-
+  <script>
+    document.querySelector("#userAnswer").addEventListener("keyup", submittedByEnterKey);
+    function submittedByEnterKey(e) {
+      e.code === 'Enter' ? checkAnswer() : undefined
+    }
+  </script>
   <script src="script.js"></script>
 
 </body>
